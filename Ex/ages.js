@@ -11,6 +11,6 @@
             } else if(number >= 66){
                 console.log('elder');
             } else {
-                console.log('out of boundsssssss');
+                console.log('out of boundsssssssss');
             }
         }
