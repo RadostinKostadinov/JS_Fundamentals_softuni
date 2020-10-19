@@ -6,7 +6,7 @@ function arrMan(array){
     for (let i = 0; i < myArrLength; i++) {
         let commandArr = myArr.shift().split(' ');
         command = commandArr[0];
-        switch(command){
+        switch(command){    
             case 'Add':
                 targetArr.push(Number(commandArr[1]));
                 break;
