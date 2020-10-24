@@ -2,8 +2,10 @@ function searchForANum(arrayOne, arrayTwo){
     let myArr = arrayOne.slice().map(Number);
     let cmdArr = arrayTwo.slice().map(Number);
 
-    myArr.slice(0, cmdArr[0]);
+    myArr = myArr.slice(0, cmdArr[0]);
+    console.log(myArr);
     myArr.splice(0, cmdArr[1]);
+    console.log(myArr);
     let counter = 0;
     while(myArr.includes(cmdArr[2])){
         counter++;
