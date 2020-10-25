@@ -1,13 +1,16 @@
-function bunnyKill(array){
+function bunnyKill(array) {
     let myArr = array.slice();
-    let arrOfBombsPositions = myArr.splice(myArr.length-1, 1);
+    let arrOfBombsPositions = myArr.splice(myArr.length - 1, 1);
+    myArr = arrayTo2DArray(myArr); 
+
     arrOfBombsPositions = arrOfBombsPositions[0].split(' ');     //returns array of BombPos like array[BombNumber][0-> returns row, 2-> column]
 
-    for(let bombNumber = 0; bombNumber < arrOfBombsPositions.length; bombNumber++){
+    for (let bombNumber = 0; bombNumber < arrOfBombsPositions.length; bombNumber++) {
         let row = arrOfBombsPositions[bombNumber][0];
         let column = arrOfBombsPositions[bombNumber][2];
         console.log(`row, column -> ${row}, ${column}`);
-        
+
+
     }
 
 
@@ -17,12 +20,21 @@ function bunnyKill(array){
     console.log(`arrOfBombsPositions        -> ${arrOfBombsPositions.join(' ')}`);
 
 
+//================= functions declaration =========
+function arrayTo2DArray(array) {
+    for (let row = 0; row < array.length; row++) {
+        let column = array[0].split(' ');
+        array.shift();
+        array.push(column);
+    }
+    return array;
+}
 }
 
 bunnyKill(
     ['5 10 15 20',
-    '10 10 10 10',
-    '10 15 10 10',
-    '10 10 10 10',
-    '2,2 0,1 3,4']
+        '10 10 10 10',
+        '10 15 10 10',
+        '10 10 10 10',
+        '2,2 0,1 3,4']
 )
