@@ -3,41 +3,23 @@ function bunnyKill(array) {
     let arrOfBombsPositions = myArr.splice(myArr.length - 1, 1);
     myArr = arrayTo2DArray(myArr);
 
-    arrOfBombsPositions = arrOfBombsPositions[0].split(' ');     //returns array of BombPos like array[BombNumber][0-> returns row, 2-> column]
+    arrOfBombsPositions = arrOfBombsPositions[0].split(' ');     //make an array of BombPos like array[BombNumber][0-> returns row, 2-> column]
+    let damageDone = 0;
+    let kills = 0;
 
     for (let bombNumber = 0; bombNumber < arrOfBombsPositions.length; bombNumber++) {
-
         let row = Number(arrOfBombsPositions[bombNumber][0]);
         let column = Number(arrOfBombsPositions[bombNumber][2]);
-        console.log(`row, column -> ${row}, ${column}`);
-        console.log(`           bombValue -> ${myArr[row][column]}`);
-        function boom(array, row, column) {
-            if (row != 0) {
-                if (column - 1 >= 0) array[row - 1][column - 1] -= array[row][column];
-                array[row - 1][column] -= array[row][column];
-                if (column + 1 != array[0].length - 1) array[row - 1][column + 1] -= array[row][column];
-            }
-
-            if (column - 1 >= 0) array[row][column - 1] -= array[row][column];
-            if (column + 1 < array[0].length) array[row][column + 1] -= array[row][column];
-
-            if (row != array.length - 1) {
-                if (column - 1 >= 0) array[row + 1][column - 1] -= array[row][column];
-                array[row + 1][column] -= array[row][column];
-                if (column + 1 < array[0].length) array[row + 1][column + 1] -= array[row][column];
-            }
-            return array;
+        
+        if (Number(myArr[row][column]) > 0){
+            damageDone += Number(myArr[row][column]);
+            kills++;
+            myArr = boom(myArr, row, column);
         }
-
-
     }
-
-
-    console.log(`arrOfBombsPositions.length -> ${arrOfBombsPositions.length}`);
-    console.log(`arrOfBombsPositions[0][0]  -> ${arrOfBombsPositions[0][2]}`);
-    console.log(`myArr                      ->${`\n`}${myArr.join('\n')}`);
-    console.log(`arrOfBombsPositions        -> ${arrOfBombsPositions.join(' ')}`);
-
+    let result = killRemained(myArr, damageDone, kills);
+    console.log(result[0]);
+    console.log(result[1]);
 
     //================= functions declaration =========
     function arrayTo2DArray(array) {
@@ -48,12 +30,55 @@ function bunnyKill(array) {
         }
         return array;
     }
+
+
+    function boom(array, row, column) {
+        let myArr = array.slice();
+        row = Number(row);
+        column = Number(column);
+        if (myArr[row][column] > 0) {
+            if (row != 0) {
+                if (column - 1 >= 0) myArr[row - 1][column - 1] -= myArr[row][column];
+                myArr[row - 1][column] -= myArr[row][column];
+                if (column + 1 < myArr[0].length) myArr[row - 1][column + 1] -= myArr[row][column];
+            }
+
+            if (column - 1 >= 0) myArr[row][column - 1] -= myArr[row][column];
+            if (column + 1 < myArr[0].length) myArr[row][column + 1] -= myArr[row][column];
+
+            if (row != myArr.length - 1) {
+                if (column - 1 >= 0) myArr[row + 1][column - 1] -= myArr[row][column];
+                myArr[row + 1][column] -= myArr[row][column];
+                if (column + 1 < myArr[0].length) myArr[row + 1][column + 1] -= myArr[row][column];
+            }
+            myArr[row][column] = 0;
+        }
+        return myArr;
+    }
+
+    function killRemained(array, damageDone, kills) {
+        let myArr = array.slice();
+        for (let row of myArr) {
+            for (let bunnyHP of row) {
+                if (bunnyHP > 0) {
+                    damageDone += Number(bunnyHP);
+                    kills++;
+                }
+            }
+        }
+        let arrReturn = [damageDone, kills];
+        return arrReturn;
+    }
 }
 
 bunnyKill(
-    ['5 10 15 20',
-        '10 10 10 10',
-        '10 15 10 10',
-        '10 10 10 10',
-        '2,1 0,3']
+    ['1 1 1 50 1 1',
+     '1 1 1 50 1 50', 
+     '1 1 30 50 1 1',
+    '0,2 1,3 1,5']
+    
+
+
+
+
 )
