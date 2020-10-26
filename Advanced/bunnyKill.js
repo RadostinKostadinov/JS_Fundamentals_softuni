@@ -8,10 +8,10 @@ function bunnyKill(array) {
     let kills = 0;
 
     for (let bombNumber = 0; bombNumber < arrOfBombsPositions.length; bombNumber++) {
-        let row = Number(arrOfBombsPositions[bombNumber][0]);
-        let column = Number(arrOfBombsPositions[bombNumber][2]);
-        
-        if (Number(myArr[row][column]) > 0){
+        let row = arrOfBombsPositions[bombNumber].split(',').map(Number)[0];
+        let column = arrOfBombsPositions[bombNumber].split(',').map(Number)[1];
+
+        if (Number(myArr[row][column]) > 0) {
             damageDone += Number(myArr[row][column]);
             kills++;
             myArr = boom(myArr, row, column);
@@ -36,23 +36,22 @@ function bunnyKill(array) {
         let myArr = array.slice();
         row = Number(row);
         column = Number(column);
-        if (myArr[row][column] > 0) {
-            if (row != 0) {
-                if (column - 1 >= 0) myArr[row - 1][column - 1] -= myArr[row][column];
-                myArr[row - 1][column] -= myArr[row][column];
-                if (column + 1 < myArr[0].length) myArr[row - 1][column + 1] -= myArr[row][column];
-            }
-
-            if (column - 1 >= 0) myArr[row][column - 1] -= myArr[row][column];
-            if (column + 1 < myArr[0].length) myArr[row][column + 1] -= myArr[row][column];
-
-            if (row != myArr.length - 1) {
-                if (column - 1 >= 0) myArr[row + 1][column - 1] -= myArr[row][column];
-                myArr[row + 1][column] -= myArr[row][column];
-                if (column + 1 < myArr[0].length) myArr[row + 1][column + 1] -= myArr[row][column];
-            }
-            myArr[row][column] = 0;
+        if (row != 0) {
+            if (column - 1 >= 0) myArr[row - 1][column - 1] -= myArr[row][column];
+            myArr[row - 1][column] -= myArr[row][column];
+            if (column + 1 < myArr[0].length) myArr[row - 1][column + 1] -= myArr[row][column];
         }
+
+        if (column - 1 >= 0) myArr[row][column - 1] -= myArr[row][column];
+        if (column + 1 < myArr[0].length) myArr[row][column + 1] -= myArr[row][column];
+
+        if (row != myArr.length - 1) {
+            if (column - 1 >= 0) myArr[row + 1][column - 1] -= myArr[row][column];
+            myArr[row + 1][column] -= myArr[row][column];
+            if (column + 1 < myArr[0].length) myArr[row + 1][column + 1] -= myArr[row][column];
+        }
+
+        myArr[row][column] = 0;
         return myArr;
     }
 
@@ -71,14 +70,3 @@ function bunnyKill(array) {
     }
 }
 
-bunnyKill(
-    ['1 1 1 50 1 1',
-     '1 1 1 50 1 50', 
-     '1 1 30 50 1 1',
-    '0,2 1,3 1,5']
-    
-
-
-
-
-)
