@@ -17,7 +17,7 @@ function deckOfCards(array){
                 }
             }break;
             case 'Insert':{
-                if(Number(operatingArr[1]) > 0 && Number(operatingArr[1]) < deck.length - 1){
+                if(Number(operatingArr[1]) >= 0 && Number(operatingArr[1]) <= deck.length - 1){
                     index = deck.indexOf(operatingArr[2]);
                     if(index != -1){
                        console.log(`Card is already bought`);
