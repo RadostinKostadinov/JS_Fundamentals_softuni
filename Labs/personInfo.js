@@ -1,21 +1,14 @@
-function personInfo(firstName, lastName, age){
+function personInfo(firstName, lastName, age) {
     age = Number(age);
-    class person {
-        constructor(fName, lName, age) {
-            this.firstName = fName;
-            this.lastName = lName;
-            this.age = age;
-          }
-        
+    let personOne = {
+        firstName,
+        lastName,
+        age
     };
-
-    personOne = new person(firstName,lastName,age);
-    console.log(`firstName: ${personOne.firstName}`);
-    console.log(`lastName: ${personOne.lastName}`);
-    console.log(`age: ${personOne.age}`);
+    return personOne;
 
 }
-personInfo("Peter", 
-"Pan",
-"20"
+personInfo("Peter",
+    "Pan",
+    "20"
 );
