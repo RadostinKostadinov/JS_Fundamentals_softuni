@@ -2,11 +2,11 @@ function cat(array) {
     myArr = array.slice();
     class Cat {
         constructor(name, age) {
-            this.name = name;
+            this.name = name;``
             this.age = age;
         }
         meow() {
-            console.log(`${this.name}, age ${this.age} says Meow`)
+            console.log(`${this.name}, age ${this.age} says Meow`);
         }
     }
     
@@ -17,7 +17,7 @@ function cat(array) {
     }
 
     for(let i = 0; i < catsArray.length; i++){
-        console.log(catsArray[i].meow);
+        catsArray[i].meow();
     }
 }
 cat(['Mellow 2', 'Tom 5']);
