@@ -17,9 +17,6 @@ function inventory(array){
         console.log(`level => ${hero.level}`);
         console.log(`items => ${hero.items.join(', ')}`);
     }
-    
-    
-
 
 }
 inventory([
