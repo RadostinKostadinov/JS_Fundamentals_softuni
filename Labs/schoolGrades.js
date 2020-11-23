@@ -15,13 +15,19 @@ function schoolGrades(array) {
         
         let avgA = 0;
         let avgB = 0;
+        let gradesA = 0;
+        let gradesB = 0;
 
         for (let i = 0; i < a[1].length; i++) {
             avgA += Number(a[1][i]);
+            gradesA++;
         }
         for (let y = 0; y < b[1].length; y++) {
             avgB += Number(b[1][y]);
+            gradesB++;
         }
+        avgA /= gradesA;
+        avgB /= gradesB;
         return avgA - avgB;
     }
     
