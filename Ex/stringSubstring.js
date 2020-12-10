@@ -1,15 +1,9 @@
 function stringSubstring(stringOne, stringTwo){
-    let reg = stringOne;
-    let text = stringTwo;
-
-    let pattern = new RegExp(`${reg}`, 'i');
-
-    let match = pattern.test(text);
-    
-    if(match){
-        console.log(reg);
+    let myArr = stringTwo.toLocaleLowerCase().split(' ');
+    if(myArr.includes(stringOne.toLocaleLowerCase())){
+        console.log(stringOne);
     } else {
-        console.log(`${reg} not found!`)
+        console.log(`${stringOne} not found!`) 
     }
 }
 stringSubstring('javascript',
