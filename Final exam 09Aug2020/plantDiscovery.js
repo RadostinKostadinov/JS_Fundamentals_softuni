@@ -39,7 +39,7 @@ function plantDiscovery(array) {
             keys = Object.keys(plantsArr);
             console.log(`Plants for the exhibition:`);
             keys.forEach(key => {
-                console.log(`${key}; Rarity: ${plantsArr[key].rarity}; Rating: ${plantsArr[key].avgRating.toFixed(2)}`)
+                console.log(`- ${key}; Rarity: ${plantsArr[key].rarity}; Rating: ${plantsArr[key].avgRating.toFixed(2)}`)
             })
 
         },
